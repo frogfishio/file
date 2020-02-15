@@ -1,0 +1,37 @@
+{
+  "name": "@frogfish/file",
+  "version": "1.0.0",
+  "description": "",
+  "main": "gulpfile.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "gulp prepare-debug; tsc; mocha --exit --recursive build/debug/test/account",
+    "watch": "gulp prepare-debug; tsc -w",
+    "start": "mkdir -p build/debug/src; cp src/services/role.yaml build/debug/src; DEBUG=engine*,svc:*  tsc-watch --onSuccess \"node node_modules/@frogfish/engine/engine -c service.yaml --root $PWD/build/debug/src\"",
+    "build": "gulp build",
+    "clean-build": "gulp clean; gulp build",
+    "dist": "npm version patch; gulp clean; gulp build; cd build/release; npm publish --access public; git push origin master"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/frogfishio/file.git"
+  },
+  "author": "",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/frogfishio/file/issues"
+  },
+  "homepage": "https://github.com/frogfishio/file#readme",
+  "dependencies": {
+    "@frogfish/engine": "^1.0.50"
+  },
+  "devDependencies": {
+    "del": "^5.1.0",
+    "gulp": "^4.0.2",
+    "gulp-typescript": "^5.0.1",
+    "mkdirp": "^0.5.1",
+    "typescript": "^3.7.5"
+  }
+}

@@ -1,0 +1,173 @@
+swagger: '2.0'
+info:
+  title: Role service
+  description: Service that manages roles
+  version: 1.0.0
+host: localhost
+schemes:
+  - https
+basePath: /v1
+produces:
+  - application/json
+paths:
+  /files:
+    get:
+      summary: Get all files
+      description: |
+        Gets all roles
+      tags:
+        - Role
+      responses:
+        '200':
+          description: An array of roles
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Role'
+        default:
+          description: Unexpected error
+          schema:
+            $ref: '#/definitions/Error'
+      security:
+        - role_auth:
+            - 'read_role'
+  /file:
+    post:
+      summary: Creates a file
+      description: |
+        Creates a new role
+      consumes:
+        - application/x-www-form-urlencoded
+      tags:
+        - Role
+      responses:
+        '200':
+          description: Success result
+          schema:
+            $ref: '#/definitions/Success'
+        default:
+          description: Unexpected error
+          schema:
+            $ref: '#/definitions/Error'
+      security:
+        - role_auth:
+            - 'create_role'
+  /file/{id}:
+    get:
+      summary: Returns file
+      description: |
+        Returns role
+      parameters:
+        - name: id
+          in: path
+          description: Role id
+          required: true
+          type: string
+      tags:
+        - Role
+      responses:
+        '200':
+          description: Role data
+          schema:
+            $ref: '#/definitions/Role'
+        default:
+          description: Unexpected error
+          schema:
+            $ref: '#/definitions/Error'
+      security:
+        - role_auth:
+            - 'read_role'
+    delete:
+      summary: Deletes role
+      description: |
+        Deletes role
+      parameters:
+        - name: id
+          in: path
+          description: Project identifier
+          required: true
+          type: string
+      tags:
+        - Role
+      responses:
+        '200':
+          description: Success result
+          schema:
+            $ref: '#/definitions/Success'
+        default:
+          description: Unexpected error
+          schema:
+            $ref: '#/definitions/Error'
+      security:
+        - role_auth:
+            - 'delete_role'
+  /file/{id}/payload:
+    get:
+      summary: Returns file payload
+      description: |
+        Returns role
+      parameters:
+        - name: id
+          in: path
+          description: Role id
+          required: true
+          type: string
+      tags:
+        - Role
+      responses:
+        '200':
+          description: Role data
+          schema:
+            $ref: '#/definitions/Role'
+        default:
+          description: Unexpected error
+          schema:
+            $ref: '#/definitions/Error'
+      security:
+        - role_auth:
+            - 'read_role'
+definitions:
+  Role:
+    properties:
+      _uuid:
+        type: string
+        format: uuid.v4
+        description: >-
+          Unique identifier representing a specific role
+      parent:
+        type: string
+        format: uuid.v4
+        description: >-
+          Unique identifier of a parent role if exsiting
+      name:
+        type: string
+        description: Role name
+      code:
+        type: string
+        description: Role code, lowercase alphanumeric, no spaces or special characters
+      status:
+        type: string
+        description: Set to active for active role
+      description:
+        type: string
+        description: Text description of the role
+  Success:
+    properties:
+      id:
+        type: string
+        format: uuid.v4
+        description: >-
+          Successful response returns id of the object
+          operated on
+  Error:
+    properties:
+      code:
+        type: integer
+        format: int32
+      message:
+        type: string
+      fields:
+        type: string
+securityDefinitions:
+  role_auth:
+    type: basic
