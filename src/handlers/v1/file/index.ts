@@ -3,7 +3,7 @@ import { ApplicationError } from '@frogfish/engine/error';
 
 let logger;
 
-export default class RoleHandler {
+export default class FileHandler {
   private api;
 
   constructor(engine: Engine, user) {

@@ -2,27 +2,25 @@ import { Engine } from '@frogfish/engine';
 
 let logger;
 
-export default class RoleHandler {
+export default class FilePayloadHandler {
   private api;
 
   constructor(engine: Engine, user) {
-    logger = engine.log.log('service:file');
+    logger = engine.log.log('service:file:payload');
     this.api = engine.files;
   }
 
-  // async get(req, res, next) {
-  //   try {
-  //     return res.json(await this._engine.role.get(req.path.split('/')[3]));
-  //   } catch (err) {
-  //     err.send(res);
-  //   }
-  // }
+  async get(req, res, next) {
+    const id = req.path.split('/')[3];
+    try {
+      const file = await this.api.get(id);
 
-  // async delete(req, res, next) {
-  //   try {
-  //     return res.json(await this._engine.role.remove(req.path.split('/')[3]));
-  //   } catch (err) {
-  //     err.send(res);
-  //   }
-  // }
+      logger.debug(`Sending payload for ${file.name} with mime ${file.mime}`);
+
+      res.set('Content-Type', file.mime);
+      this.api.payload(id).then(stream => stream.pipe(res));
+    } catch (err) {
+      err.send(res);
+    }
+  }
 }

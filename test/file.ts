@@ -61,6 +61,25 @@ describe('File', () => {
       .which.equals(testFile.id);
   });
 
+  it('should get file payload', done => {
+    const fs = require('fs');
+    const ag = require('superagent');
+
+    ag.get(`${API}/file/${testFile.id}/payload`)
+      .set('Authorization', 'Bearer ' + adminToken)
+      .end((err, res) => {
+        let crypto = require('crypto');
+        let shasum = crypto.createHash('sha1');
+        shasum.update(res.body);
+
+        const digest = shasum.digest('hex');
+        console.log('SHA ------> ' + digest);
+
+        expect(digest).to.equals(testFile.digest);
+        done();
+      });
+  });
+
   // it('should find brand', async () => {
   //   expect(await request.get(`${API}/brands`, { _uuid: testBrandId }, adminToken))
   //     .to.be.instanceof(Array)
