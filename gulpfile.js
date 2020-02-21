@@ -26,7 +26,7 @@ async function package() {
 }
 
 async function services() {
-  await src(['src/services/*']).pipe(dest('build/release'));
+  await src(['service/*']).pipe(dest('build/release'));
 }
 
 exports.clean = clean;

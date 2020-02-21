@@ -1,6 +1,6 @@
 swagger: '2.0'
 info:
-  title: Role service
+  title: File service
   description: Service that manages roles
   version: 1.0.0
 host: localhost
@@ -78,17 +78,17 @@ paths:
         - file_auth:
             - 'read_file'
     delete:
-      summary: Deletes role
+      summary: Deletes file
       description: |
         Deletes role
       parameters:
         - name: id
           in: path
-          description: Project identifier
+          description: File identifier
           required: true
           type: string
       tags:
-        - Role
+        - File
       responses:
         '200':
           description: Success result
@@ -105,15 +105,15 @@ paths:
     get:
       summary: Returns file payload
       description: |
-        Returns role
+        Returns file payload
       parameters:
         - name: id
           in: path
-          description: Role id
+          description: File id
           required: true
           type: string
       tags:
-        - Role
+        - File
       responses:
         '200':
           description: Role data
