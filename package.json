@@ -9,7 +9,7 @@
   "scripts": {
     "test": "DEBUG=engine*,service*,request* ENGINE_ROOT=$PWD mocha --exit --recursive build/debug/test",
     "watch": "gulp prepare-debug; tsc -w",
-    "start": "DEBUG=engine*,service:*  tsc-watch --onSuccess \"node node_modules/@frogfish/engine/engine -c test/service.yaml --root $PWD\"",
+    "start": "DEBUG=engine*,service:*  tsc-watch --onSuccess \"node node_modules/@frogfish/kona/engine -c test/service.yaml --root $PWD\"",
     "build": "gulp build",
     "clean-build": "gulp clean; gulp build",
     "dist": "npm version patch; gulp clean; gulp build; cd build/release; npm publish --access public; git push origin master"
@@ -25,7 +25,7 @@
   },
   "homepage": "https://github.com/frogfishio/file#readme",
   "dependencies": {
-    "@frogfish/engine": "^2.0.3",
+    "@frogfish/kona": "^2.0.6",
     "busboy": "^0.3.1",
     "superagent": "^5.2.1"
   },

@@ -1,4 +1,4 @@
-import { Engine } from '@frogfish/engine';
+import { Engine } from '@frogfish/kona';
 
 let logger;
 

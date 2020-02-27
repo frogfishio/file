@@ -1,4 +1,4 @@
-import { Engine } from '@frogfish/engine';
+import { Engine } from '@frogfish/kona';
 let engine: Engine;
 
 module.exports.engine = async (): Promise<Engine> => {
