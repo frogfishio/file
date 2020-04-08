@@ -8,6 +8,12 @@ jobs:
     steps:
     - uses: actions/setup-node@v1.1.0
     - uses: actions/checkout@v1
+    - name: Cleanup
+      run: rm -rf ~/.npm
+    - name: Cleanup 2
+      run: npm cache clean --force
+    - name: Cleanup 3
+      run: rm -rf node_modules package-lock.json
     - name: Install packages
       run: npm install --no-bin-links
     - run: mkdir -p build/release
@@ -20,6 +26,6 @@ jobs:
     - name: Publish to Registry
       uses: HurricanKai/Publish-Docker-Github-Action@master
       with:
-        name: frogfishio/role
+        name: frogfishio/file
         username: frogfishio
         password: ${{ secrets.DOCKERHUB_SECRET }}

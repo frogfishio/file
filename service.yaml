@@ -1,5 +1,5 @@
 ###########################################
-# Role service
+# FIle service
 ###########################################
 
 system:
@@ -24,19 +24,10 @@ auth:
 
 registry:
   services:
-    role-service:
-      name: Role service
+    file-service:
+      name: File service
       specs:
-        - /role.yaml
+        - /file.yaml
       handlers:
         - /handlers
 
-roles:
-  admin:
-    name: Administrator
-    permissions:
-      - admin
-      - read_role
-      - create_role
-      - delete_role
-      - modify_role

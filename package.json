@@ -7,9 +7,9 @@
     "test": "test"
   },
   "scripts": {
-    "test": "DEBUG=engine*,service*,request* ENGINE_ROOT=$PWD mocha --exit --recursive build/debug/test",
+    "test": "gulp prepare-debug; tsc; mocha --exit --recursive build/debug/test/account",
     "watch": "gulp prepare-debug; tsc -w",
-    "start": "DEBUG=engine*,service:*  tsc-watch --onSuccess \"node node_modules/@frogfish/kona/engine -c test/service.yaml --root $PWD\"",
+    "start": "mkdir -p build/debug/src; cp src/services/role.yaml build/debug/src; DEBUG=engine*,svc:*  tsc-watch --onSuccess \"node node_modules/@frogfish/kona/engine -c service.yaml --root $PWD/build/debug/src\"",
     "build": "gulp build",
     "clean-build": "gulp clean; gulp build",
     "dist": "npm version patch; gulp clean; gulp build; cd build/release; npm publish --access public; git push origin master"
@@ -25,9 +25,9 @@
   },
   "homepage": "https://github.com/frogfishio/file#readme",
   "dependencies": {
-    "@frogfish/kona": "^2.0.6",
+    "@frogfish/kona": "^2.0.18",
     "busboy": "^0.3.1",
-    "superagent": "^5.2.1"
+    "superagent": "^5.2.2"
   },
   "devDependencies": {
     "@types/mocha": "^2.2.48",
@@ -38,7 +38,7 @@
     "del": "^5.1.0",
     "gulp": "^4.0.2",
     "gulp-typescript": "^5.0.1",
-    "mkdirp": "^0.5.1",
-    "typescript": "^3.7.5"
+    "mkdirp": "^0.5.5",
+    "typescript": "^3.8.3"
   }
 }
