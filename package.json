@@ -25,7 +25,7 @@
   },
   "homepage": "https://github.com/frogfishio/file#readme",
   "dependencies": {
-    "@frogfish/kona": "^2.0.21",
+    "@frogfish/kona": "^2.0.22",
     "busboy": "^0.3.1",
     "superagent": "^5.2.2"
   },
