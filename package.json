@@ -25,13 +25,13 @@
   },
   "homepage": "https://github.com/frogfishio/file#readme",
   "dependencies": {
-    "@frogfish/kona": "^2.0.22",
+    "@frogfish/kona": "^2.1.1",
     "busboy": "^0.3.1",
     "superagent": "^5.2.2"
   },
   "devDependencies": {
     "@types/mocha": "^2.2.48",
-    "@types/node": "^8.10.59",
+    "@types/node": "^8.10.60",
     "chai": "^4.2.0",
     "chai-like": "^1.1.1",
     "chai-things": "^0.2.0",
