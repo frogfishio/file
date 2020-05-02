@@ -76,7 +76,7 @@ paths:
             $ref: '#/definitions/Error'
       security:
         - file_auth:
-            - 'read_file'
+            - 'read_files'
     delete:
       summary: Deletes file
       description: |
@@ -100,7 +100,7 @@ paths:
             $ref: '#/definitions/Error'
       security:
         - file_auth:
-            - 'delete_file'
+            - 'delete_files'
   /file/{id}/payload:
     get:
       summary: Returns file payload
