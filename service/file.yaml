@@ -30,7 +30,7 @@ paths:
             $ref: '#/definitions/Error'
       security:
         - file_auth:
-            - 'read_file'
+            - 'read_files'
   /file:
     post:
       summary: Creates a file
@@ -51,7 +51,7 @@ paths:
             $ref: '#/definitions/Error'
       security:
         - file_auth:
-            - 'create_file'
+            - 'create_files'
   /file/{id}:
     get:
       summary: Returns file
@@ -64,7 +64,7 @@ paths:
           required: true
           type: string
       tags:
-        - Role
+        - File
       responses:
         '200':
           description: Role data
