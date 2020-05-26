@@ -18,9 +18,9 @@ export default class FilePayloadHandler {
       logger.debug(`Sending payload for ${file.name} with mime ${file.mime}`);
 
       res.set('Content-Type', file.mime);
-      this.api.payload(id).then(stream => stream.pipe(res));
+      this.api.payload(id).then((stream) => stream.pipe(res));
     } catch (err) {
-      err.send(res);
+      require('@frogfish/kona/util').error(err, res, logger, 'svc_file_payload_get');
     }
   }
 }

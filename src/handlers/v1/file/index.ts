@@ -16,7 +16,7 @@ export default class FileHandler {
       console.log('PATH = ' + req.path + ' -> ' + req.path.split('/')[3]);
       return res.json(await this.api.get(req.path.split('/')[3]));
     } catch (err) {
-      err.send(res);
+      require('@frogfish/kona/util').error(err, res, logger, 'svc_file_get');
     }
   }
 
