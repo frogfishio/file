@@ -8,7 +8,7 @@ module.exports.engine = async (): Promise<Engine> => {
     if (engine) {
       return resolve(engine);
     } else {
-      engine = new Engine(`${process.env.ENGINE_ROOT}/test/service.yaml`, {
+      engine = new Engine(`${process.env.ENGINE_ROOT}/.service.yaml`, {
         root: process.env.ENGINE_ROOT
         // env: 'test_env',
         // tenant: 'test_tenant',

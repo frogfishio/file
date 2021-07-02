@@ -12,11 +12,11 @@ produces:
 paths:
   /files:
     get:
-      summary: Get all files
+      summary: Find files using criteria
       description: |
         Gets all roles
       tags:
-        - Role
+        - File
       responses:
         '200':
           description: An array of roles
@@ -39,7 +39,7 @@ paths:
       consumes:
         - application/x-www-form-urlencoded
       tags:
-        - Role
+        - File
       responses:
         '200':
           description: Success result

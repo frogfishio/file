@@ -20,13 +20,13 @@ export default class FileHandler {
     }
   }
 
-  // async delete(req, res, next) {
-  //   try {
-  //     return res.json(await this._engine.role.remove(req.path.split('/')[3]));
-  //   } catch (err) {
-  //     err.send(res);
-  //   }
-  // }
+  async delete(req, res, next) {
+    try {
+      return res.json(await this.api.remove(req.path.split('/')[3]));
+    } catch (err) {
+      err.send(res);
+    }
+  }
 
   async post(req, res, next) {
     logger.debug('Processing file upload');
@@ -40,7 +40,7 @@ export default class FileHandler {
     let params: any = {
       mime: req.query.mime,
       name: req.query.name,
-      type: req.query.type
+      type: req.query.type,
     };
 
     busboy.on('field', (fieldname, val, fieldnameTruncated, valTruncated, encoding, mimetype) => {
@@ -70,7 +70,7 @@ export default class FileHandler {
           : res.status(500).json({
               error: 'system_error',
               error_description: 'System error uploading file',
-              trace: 'svc_file_create2'
+              trace: 'svc_file_create2',
             });
       }
     });
